@@ -2,8 +2,11 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.StringTokenizer;
 
 public class Principal {
+    private static String lineas;
+
     public static void main(String args[]){
         if(args.length==0) {
             System.out.println("Falta el nombre del archivo.");
@@ -20,6 +23,7 @@ public class Principal {
         BufferedReader in=new BufferedReader(filereader);
         String textLine=null;
         int contador=0;
+        int contador2=0;
         while (true){
             try {
                 if (!((textLine= in.readLine())!= null))
@@ -31,11 +35,20 @@ public class Principal {
             contador++;
         }
 
+            String[] lines;
+                lines= filereader.toString().split(" ");
+                lineas= String.valueOf(lines.length);
+        StringTokenizer st = new StringTokenizer(filereader.getEncoding());
+        while (st.hasMoreTokens()) {
+            contador2++;
+        }
         try {
             in.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("El archivo "+fileName+" tiene "+ contador+" lineas.");
+        System.out.println("El archivo "+fileName+" tiene "+ contador +" lineas.");
+        System.out.println("El archivo "+fileName+" tiene "+ lineas +"palabras.");
+        System.out.println("El archivo "+fileName+" tiene "+ contador2 +"palabras.");
     }
 }
